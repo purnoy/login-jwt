@@ -15,7 +15,8 @@ const AuthProvider = ({ children }) => {
   const [answer, setAnswer] = useState(gettingAnswer);
 
   useEffect(() => {
-    axios.get('http://localhost:3001/api/products')
+    if(loginSuccess){
+      axios.get('http://localhost:3001/api/products')
       .then(response => {
         const data = response.data;
         console.log(data);
@@ -23,7 +24,8 @@ const AuthProvider = ({ children }) => {
         localStorage.setItem('answer', JSON.stringify(data));
       })
       .catch(error => console.error('Error:', error));
-  }, []); 
+    }
+  }, [loginSuccess]); 
 
 
   return (

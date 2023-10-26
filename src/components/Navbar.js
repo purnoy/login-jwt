@@ -26,9 +26,9 @@ const Navbar = () => {
   
   const logout = () =>{
     console.log('hi')
+    localStorage.removeItem('answer')
     document.cookie = 'token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
     document.cookie = 'user=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    localStorage.removeItem("answer");
     setLoginSuccess(false);
     window.location.reload();
   }
