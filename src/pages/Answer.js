@@ -18,20 +18,8 @@ const Answer = () => {
   const [answer, setAnswer] = useState(gettingAnswer);
   
   const {id} = useParams();
-  const {loginSuccess} = useContext(AuthContext);
+  
 
-  useEffect(() => {
-    if(loginSuccess){
-      axios.get('http://localhost:3001/api/products')
-      .then(response => {
-        const data = response.data;
-        console.log(data);
-        setAnswer(data);
-        localStorage.setItem('answer', JSON.stringify(data));
-      })
-      .catch(error => console.error('Error:', error));
-    }
-  }, [loginSuccess]); 
   
   const displayAnswer = answer.find(product => product.product_id === parseInt(id));
 

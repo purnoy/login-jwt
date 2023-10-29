@@ -1,8 +1,10 @@
-import React, { useState } from 'react'
+import React, { useContext, useState } from 'react'
 import Navbar from '../components/Navbar'
 import { Link, Route, createBrowserRouter, useNavigate } from 'react-router-dom'
 import Answer from './Answer'
 import {AiFillCaretDown} from 'react-icons/ai'
+import { AuthContext } from '../Context/AuthContext'
+import axios from 'axios'
 
 
 
@@ -11,6 +13,19 @@ const answerid = [
 ]
 
 const Dashboard = () => {
+  const {loginSuccess} = useContext(AuthContext);
+
+ 
+    if(loginSuccess){
+      axios.get('http://localhost:3001/api/products')
+      .then(response => {
+        const data = response.data;
+        console.log(data);
+        
+        localStorage.setItem('answer', JSON.stringify(data));
+      })
+      .catch(error => console.error('Error:', error));
+    }
 
   return (
     <>

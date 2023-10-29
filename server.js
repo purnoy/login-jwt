@@ -44,6 +44,7 @@ app.get('/api/products', (req, res) => {
 });
 
 
+
 // REGISTER
 //POST REGISTER
 app.post('/register', async (req, res) => {
